@@ -1,10 +1,34 @@
-import os
+import os, logging
+from datetime import datetime
 import psycopg2
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 
 # ...
 
 app = Flask(__name__)
+app.logger.setLevel(logging.DEBUG)
+@app.errorhandler(500)
+def general_application_error(e):
+    """ General Error Hanlder
+        returns 500 on invocation
+    """
+    return jsonify(error=str(e)), 500
+
+@app.route('/')
+def appRoot():
+    now = datetime.now()
+
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+
+    return jsonify({"message": "Hello From Flask App, Current Date is : {} ".format(dt_string)})
+
+@app.route('/healthz')
+def healthcheck():
+    now = datetime.now()
+
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+
+    return jsonify({"message": "Hello From Senthu's Flask App, Current Date is : {} ".format(dt_string)})
 
 def get_db_connection():
     conn = psycopg2.connect(host='localhost',
@@ -14,7 +38,7 @@ def get_db_connection():
     return conn
 
 
-@app.route('/')
+@app.route('/read')
 def index():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -47,3 +71,12 @@ def create():
         return redirect(url_for('index'))
 
     return render_template('create.html')
+
+if __name__ == "__main__":
+
+    if os.getenv('ENVIRONMENT') is not None:
+        app.config['environment'] = os.getenv('ENVIRONMENT')
+    else:
+        app.config['environment'] = "dev"
+
+    app.run(debug=False, host='0.0.0.0',port=8888)
