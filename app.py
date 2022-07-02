@@ -16,11 +16,8 @@ def general_application_error(e):
 
 @app.route('/')
 def appRoot():
-    now = datetime.now()
-
-    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-
-    return jsonify({"message": "Hello From Flask App, Current Date is : {} ".format(dt_string)})
+    person = {'name': 'Alice', 'birth-year': 1978}
+    return jsonify(person)
 
 @app.route('/healthz')
 def healthcheck():
@@ -28,7 +25,7 @@ def healthcheck():
 
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
-    return jsonify({"message": "Hello From Senthu's Flask App, Current Date is : {} ".format(dt_string)})
+    return jsonify({"message": "Hello From  Flask App, Current Date is : {} ".format(dt_string)})
 
 def get_db_connection():
     conn = psycopg2.connect(host='localhost',
@@ -79,4 +76,4 @@ if __name__ == "__main__":
     else:
         app.config['environment'] = "dev"
 
-    app.run(debug=False, host='0.0.0.0',port=8888)
+    app.run(debug=False, host='0.0.0.0',port=5000)
