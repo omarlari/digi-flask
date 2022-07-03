@@ -3,10 +3,9 @@ from datetime import datetime
 import psycopg2
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 
-# ...
-
 app = Flask(__name__)
 app.logger.setLevel(logging.DEBUG)
+
 @app.errorhandler(500)
 def general_application_error(e):
     """ General Error Hanlder
@@ -76,4 +75,4 @@ if __name__ == "__main__":
     else:
         app.config['environment'] = "dev"
 
-    app.run(debug=False, host='0.0.0.0',port=5000)
+    app.run(debug=False, host='0.0.0.0', port=8080)
