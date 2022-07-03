@@ -47,7 +47,7 @@ def index():
 
 @app.route('/init/')
 def init():
-    person = {'name': 'Alice', 'birth-year': 1978}
+    person = {'name': 'Alice', 'birth-year': 1978, 'envar': "ENV1"}
     return jsonify(person)
 
 @app.route('/create/', methods=('GET', 'POST'))
