@@ -46,7 +46,7 @@ def index():
 
 @app.route('/seed')
 def seed():
-    person = {'name': 'Alice', 'birth-year': 1978, 'envar': os.getenv('ENV1')}
+    person = {'name': 'Alice', 'birth-year': 1978, 'envar': os.environ.get('ENV1')}
     #os.getenv('ENV1')
     return jsonify(person)
 
