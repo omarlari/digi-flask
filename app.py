@@ -44,9 +44,10 @@ def index():
     conn.close()
     return jsonify(books)
 
-@app.route('/init')
-def init():
+@app.route('/seed')
+def seed():
     person = {'name': 'Alice', 'birth-year': 1978, 'envar': os.getenv('ENV1')}
+    #os.getenv('ENV1')
     return jsonify(person)
 
 @app.route('/create/', methods=('GET', 'POST'))
