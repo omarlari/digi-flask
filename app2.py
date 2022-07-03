@@ -46,7 +46,7 @@ def index():
 
 @app.route('/init')
 def init():
-    person = {'name': 'Alice', 'birth-year': 1978, 'envar': os.getenv('ENV1')}
+    person = {'name': 'Alice', 'birth-year': 1978, 'envar': ENV1}
     return jsonify(person)
 
 @app.route('/create/', methods=('GET', 'POST'))
@@ -75,4 +75,4 @@ if __name__ == "__main__":
     else:
         app.config['environment'] = "dev"
 
-    app.run(debug=False, host='0.0.0.0', port=8080)
+    app.run(debug=False, host='0.0.0.0', port=5000)
