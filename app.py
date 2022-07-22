@@ -19,7 +19,7 @@ def appRoot():
     return jsonify(person)
 
 @app.route('/digi-flask2')
-def appRoot():
+def appRoot1():
     person = {'name': 'for digital ocean', 'birth-year': 2005}
     return jsonify(person)
 
