@@ -10,6 +10,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 
-ENTRYPOINT [ "python" ]
+ENTRYPOINT [ "gunicorn", "-b", ":8080" ]
 
-CMD [ "app.py" ]
+CMD [ "app:app" ]

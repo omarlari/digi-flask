@@ -18,6 +18,11 @@ def appRoot():
     person = {'name': 'Alice', 'birth-year': 1978}
     return jsonify(person)
 
+@app.route('/digi-flask2')
+def appRoot():
+    person = {'name': 'for digital ocean', 'birth-year': 2005}
+    return jsonify(person)
+
 @app.route('/healthz')
 def healthcheck():
     now = datetime.now()
