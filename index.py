@@ -15,7 +15,12 @@ def general_application_error(e):
 
 @app.route('/')
 def appRoot():
-    person = {'name': 'Railway-testing', 'birth-year': 1978}
+    person = {'name': 'Alice', 'birth-year': 1978}
+    return jsonify(person)
+
+@app.route('/digi-flask2')
+def appRoot1():
+    person = {'name': 'for digital ocean', 'birth-year': 2005}
     return jsonify(person)
 
 @app.route('/healthz')
@@ -66,14 +71,4 @@ def create():
         cur.close()
         conn.close()
         return redirect(url_for('index'))
-
     return render_template('create.html')
-
-if __name__ == "__main__":
-
-    if os.getenv('ENVIRONMENT') is not None:
-        app.config['environment'] = os.getenv('ENVIRONMENT')
-    else:
-        app.config['environment'] = "dev"
-
-    app.run(debug=False, host='0.0.0.0', port=8080)
