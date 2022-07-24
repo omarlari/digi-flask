@@ -27,10 +27,10 @@ def healthcheck():
     return jsonify({"message": "Hello From  Flask App, Current Date is : {} ".format(dt_string)})
 
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost',
-                            database='flask_db',
-                            user=os.environ['DB_USERNAME'],
-                            password=os.environ['DB_PASSWORD'])
+    conn = psycopg2.connect(host=os.environ['PGHOST'],
+                            database=os.environ['PGDATABASE'],
+                            user=os.environ['PGUSER'],
+                            password=os.environ['PGPASSWORD'])
     return conn
 
 
@@ -76,4 +76,4 @@ if __name__ == "__main__":
     else:
         app.config['environment'] = "dev"
 
-    app.run(debug=False, host='0.0.0.0', port=8080)
+    app.run(debug=False, host='0.0.0.0', port=os.getenv("PORT", default=8080))
