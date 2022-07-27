@@ -12,3 +12,9 @@ run:
   env:
     - name: ENV1
       value: "this is the runtime value"
+    - name: PGDATABASE
+      value: database-1.cluster-cs8cwu8s3gc3.us-east-1.rds.amazonaws.com
+    - name: PGUSER
+      value: postgres
+    - name: PGPASSWORD
+      value: AppRunner101!
