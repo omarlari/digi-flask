@@ -86,7 +86,7 @@ def seed():
     conn.close()
     return('success!')
 
-@app.route('/create/', methods=('GET', 'POST'))
+@app.route('/post', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
         title = request.form['title']
@@ -101,9 +101,9 @@ def create():
         conn.commit()
         cur.close()
         conn.close()
-        return redirect(url_for('index'))
+        return redirect(url_for('success!'))
 
-    return render_template('create.html')
+    return render_template('success!')
 
 if __name__ == "__main__":
 

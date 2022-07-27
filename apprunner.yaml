@@ -11,9 +11,11 @@ run:
     env: PORT
   env:
     - name: ENV1
-      value: "this is the runtime value"
+      value: "july 27 value"
     - name: PGDATABASE
       value: database-1.cluster-cs8cwu8s3gc3.us-east-1.rds.amazonaws.com
+    - name: PGHOST
+      value: database-1-instance-1.cs8cwu8s3gc3.us-east-1.rds.amazonaws.com
     - name: PGUSER
       value: postgres
     - name: PGPASSWORD
