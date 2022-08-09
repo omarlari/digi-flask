@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, url_for, redirect, jsonify
 application = Flask(__name__)
 application.logger.setLevel(logging.DEBUG)
 
-@application.errorhandlelicationr(500)
+@application.errorhandler(500)
 def general_application_error(e):
     """ General Error Hanlder
         returns 500 on invocation
