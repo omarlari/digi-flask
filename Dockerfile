@@ -12,4 +12,4 @@ COPY . /app
 
 ENTRYPOINT [ "gunicorn", "-b", ":8080" ]
 
-CMD [ "application:application" ]
+CMD [ "app:application" ]
