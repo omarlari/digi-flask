@@ -3,7 +3,7 @@ from datetime import datetime
 import psycopg2
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 
-application lication= Flask(__name__)
+application = Flask(__name__)
 application.logger.setLevel(logging.DEBUG)
 
 @application.errorhandlelicationr(500)
