@@ -1,6 +1,6 @@
 import os, logging
 from datetime import datetime
-#import psycopg2
+import psycopg2
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 
 application = Flask(__name__)
