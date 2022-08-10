@@ -112,4 +112,4 @@ if __name__ == "__main__":
     else:
         application.config['environment'] = "dev"
 
-    application.run(debug=False, host='0.0.0.0', port=os.getenv("PORT", default=8080))
+    application.run(debug=False, host='0.0.0.0', port=os.getenv("PORT", default=5000))
