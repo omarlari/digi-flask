@@ -1,24 +1,24 @@
 import os, logging
 from datetime import datetime
 import psycopg2
-from flask import Flask, render_template, request, url_for, redirect, jsonify
+from flask import Flask, jsonify
 
-application = Flask(__name__)
-application.logger.setLevel(logging.DEBUG)
+app = Flask(__name__)
+app.logger.setLevel(logging.DEBUG)
 
-@application.errorhandler(500)
-def general_application_error(e):
+@app.errorhandler(500)
+def general_app_error(e):
     """ General Error Hanlder
         returns 500 on invocation
     """
     return jsonify(error=str(e)), 500
 
-@application.route('/')
+@app.route('/')
 def appRoot():
     person = {'name': 'Railway-testing', 'birth-year': 1978}
     return jsonify(person)
 
-@application.route('/healthz')
+@app.route('/healthz')
 def healthcheck():
     now = datetime.now()
 
@@ -34,7 +34,7 @@ def get_db_connection():
     return conn
 
 
-@application.route('/read')
+@app.route('/read')
 def index():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -44,7 +44,7 @@ def index():
     conn.close()
     return jsonify(books)
 
-@application.route('/seed')
+@app.route('/seed')
 def seed():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -86,7 +86,7 @@ def seed():
     conn.close()
     return('success!')
 
-@application.route('/post', methods=('GET', 'POST'))
+@app.route('/post', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
         title = request.form['title']
@@ -108,8 +108,8 @@ def create():
 if __name__ == "__main__":
 
     if os.getenv('ENVIRONMENT') is not None:
-        application.config['environment'] = os.getenv('ENVIRONMENT')
+        app.config['environment'] = os.getenv('ENVIRONMENT')
     else:
-        application.config['environment'] = "dev"
+        app.config['environment'] = "dev"
 
-    application.run(debug=False, host='0.0.0.0', port=os.getenv("PORT", default=5000))
+    app.run(debug=False, host='0.0.0.0', port=os.getenv("PORT", default=5000))
