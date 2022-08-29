@@ -15,7 +15,7 @@ def general_app_error(e):
 
 @app.route('/')
 def appRoot():
-    person = {'name': 'Railway-testing', 'birth-year': 1978}
+    person = {'name': 'PR request 1', 'birth-year': 1978}
     return jsonify(person)
 
 @app.route('/healthz')
